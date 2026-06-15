@@ -3,7 +3,7 @@ module github.com/velonetics/velonetics-pubsub/v2
 go 1.25.0
 
 require (
-	github.com/velonetics/lura/v2 v2.14.1
+	github.com/velonetics/lura/v2 v2.0.0
 	gocloud.dev v0.45.0
 	gocloud.dev/pubsub/kafkapubsub v0.45.0
 	gocloud.dev/pubsub/natspubsub v0.45.0
@@ -63,7 +63,7 @@ require (
 	github.com/jcmturner/gokrb5/v8 v8.4.4 // indirect
 	github.com/jcmturner/rpc/v2 v2.0.3 // indirect
 	github.com/klauspost/compress v1.18.3 // indirect
-	github.com/velonetics/flatmap v1.2.0 // indirect
+	github.com/velonetics/flatmap v1.0.0 // indirect
 	github.com/kylelemons/godebug v1.1.0 // indirect
 	github.com/nats-io/nats.go v1.48.0 // indirect
 	github.com/nats-io/nkeys v0.4.12 // indirect
