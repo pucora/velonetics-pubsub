@@ -142,6 +142,9 @@ func validateSubscriber(cfg *subscriberCfg) error {
 	if len(cfg.Reader.Topics) == 0 {
 		return fmt.Errorf("reader.topics is required")
 	}
+	if len(cfg.Reader.Topics) != 1 {
+		return fmt.Errorf("reader.topics must contain exactly one topic for HTTP subscribers")
+	}
 	if len(cfg.Reader.Cluster.Brokers) == 0 {
 		return fmt.Errorf("reader.cluster.brokers is required")
 	}

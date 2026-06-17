@@ -64,3 +64,27 @@ func TestValidateConfig_asyncKafka(t *testing.T) {
 		t.Fatal(err)
 	}
 }
+
+func TestValidateConfig_kafkaSubscriberMultipleTopics(t *testing.T) {
+	cfg := &config.ServiceConfig{
+		Endpoints: []*config.EndpointConfig{{
+			Endpoint: "/subscribe",
+			Backend: []*config.Backend{{
+				URLPattern: "/ignored",
+				ExtraConfig: config.ExtraConfig{
+					SubscriberNamespace: map[string]interface{}{
+						"reader": map[string]interface{}{
+							"topics": []interface{}{"a", "b"},
+							"cluster": map[string]interface{}{
+								"brokers": []interface{}{"localhost:9092"},
+							},
+						},
+					},
+				},
+			}},
+		}},
+	}
+	if err := ValidateConfig(cfg); err == nil {
+		t.Fatal("expected validation error for multiple topics")
+	}
+}
