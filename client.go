@@ -13,12 +13,15 @@ import (
 	_ "gocloud.dev/pubsub/azuresb"
 	_ "gocloud.dev/pubsub/gcppubsub"
 	_ "gocloud.dev/pubsub/kafkapubsub"
+	_ "gocloud.dev/pubsub/mempubsub"
 	_ "gocloud.dev/pubsub/natspubsub"
 	_ "gocloud.dev/pubsub/rabbitpubsub"
 
 	"github.com/velonetics/lura/v2/config"
 	"github.com/velonetics/lura/v2/logging"
 	"github.com/velonetics/lura/v2/proxy"
+
+	kafkapubsub "github.com/velonetics/velonetics-pubsub/v2/kafka"
 )
 
 var errNoBackendHostDefined = fmt.Errorf("no host backend defined")
@@ -43,6 +46,18 @@ type BackendFactory struct {
 }
 
 func (f *BackendFactory) New(remote *config.Backend) proxy.Proxy {
+	if prxy, err := kafkapubsub.TryInitSubscriber(f.ctx, f.logger, remote); err == nil {
+		return prxy
+	} else if !kafkapubsub.IsNamespaceNotFound(err) {
+		return kafkapubsub.ErrorProxy(err)
+	}
+
+	if prxy, err := kafkapubsub.TryInitPublisher(f.ctx, f.logger, remote); err == nil {
+		return prxy
+	} else if !kafkapubsub.IsNamespaceNotFound(err) {
+		return kafkapubsub.ErrorProxy(err)
+	}
+
 	if prxy, err := f.initSubscriber(f.ctx, remote); err == nil {
 		return prxy
 	}
@@ -72,11 +87,11 @@ func (f *BackendFactory) initPublisher(ctx context.Context, remote *config.Backe
 	logPrefix := "[BACKEND: " + dns + cfg.TopicURL + "][PubSub]"
 	t, err := pubsub.OpenTopic(ctx, dns+cfg.TopicURL)
 	if err != nil {
-		f.logger.Error(fmt.Sprintf(logPrefix, err.Error()))
+		f.logger.Error(logPrefix, "Error while opening topic:", err.Error())
 		return proxy.NoopProxy, err
 	}
 
-	f.logger.Debug(logPrefix, "Publisher initialized sucessfully")
+	f.logger.Debug(logPrefix, "Publisher initialized successfully")
 
 	go func() {
 		<-ctx.Done()
@@ -124,11 +139,11 @@ func (f *BackendFactory) initSubscriber(ctx context.Context, remote *config.Back
 
 	sub, err := pubsub.OpenSubscription(ctx, topicURL)
 	if err != nil {
-		f.logger.Error(fmt.Sprintf(logPrefix, "Error while opening subscription: %s", err.Error()))
+		f.logger.Error(logPrefix, "Error while opening subscription:", err.Error())
 		return proxy.NoopProxy, err
 	}
 
-	f.logger.Debug(logPrefix, "Subscriber initialized sucessfully")
+	f.logger.Debug(logPrefix, "Subscriber initialized successfully")
 
 	go func() {
 		<-ctx.Done()
@@ -145,8 +160,7 @@ func (f *BackendFactory) initSubscriber(ctx context.Context, remote *config.Back
 
 		var data map[string]interface{}
 		if err := remote.Decoder(bytes.NewBuffer(msg.Body), &data); err != nil && err != io.EOF {
-			// TODO: figure out how to Nack if possible
-			// msg.Nack()
+			msg.Nack()
 			return nil, err
 		}
 

@@ -3,11 +3,14 @@ module github.com/velonetics/velonetics-pubsub/v2
 go 1.25.0
 
 require (
+	github.com/segmentio/kafka-go v0.4.51
 	github.com/velonetics/lura/v2 v2.0.0
+	github.com/velonetics/velonetics-ratelimit/v3 v3.0.0
 	gocloud.dev v0.45.0
 	gocloud.dev/pubsub/kafkapubsub v0.45.0
 	gocloud.dev/pubsub/natspubsub v0.45.0
 	gocloud.dev/pubsub/rabbitpubsub v0.45.0
+	golang.org/x/sync v0.19.0
 )
 
 require (
@@ -63,7 +66,6 @@ require (
 	github.com/jcmturner/gokrb5/v8 v8.4.4 // indirect
 	github.com/jcmturner/rpc/v2 v2.0.3 // indirect
 	github.com/klauspost/compress v1.18.3 // indirect
-	github.com/velonetics/flatmap v1.0.0 // indirect
 	github.com/kylelemons/godebug v1.1.0 // indirect
 	github.com/nats-io/nats.go v1.48.0 // indirect
 	github.com/nats-io/nkeys v0.4.12 // indirect
@@ -73,6 +75,7 @@ require (
 	github.com/rabbitmq/amqp091-go v1.10.0 // indirect
 	github.com/rcrowley/go-metrics v0.0.0-20250401214520-65e299d6c5c9 // indirect
 	github.com/valyala/fastrand v1.1.0 // indirect
+	github.com/velonetics/flatmap v1.0.0 // indirect
 	go.opentelemetry.io/auto/sdk v1.2.1 // indirect
 	go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc v0.63.0 // indirect
 	go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.63.0 // indirect
@@ -84,7 +87,6 @@ require (
 	golang.org/x/crypto v0.48.0 // indirect
 	golang.org/x/net v0.51.0 // indirect
 	golang.org/x/oauth2 v0.34.0 // indirect
-	golang.org/x/sync v0.19.0 // indirect
 	golang.org/x/sys v0.42.0 // indirect
 	golang.org/x/text v0.34.0 // indirect
 	golang.org/x/time v0.14.0 // indirect
