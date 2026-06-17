@@ -38,11 +38,12 @@ func runConsumer(ctx context.Context, opts consumerOptions, logger logging.Logge
 	}
 	ping <- opts.Name
 
-	workers := opts.Workers
-	if workers < 1 {
+	if opts.Workers < 1 {
 		logger.Error(fmt.Sprintf("[SERVICE: AsyncAgent][Kafka][%s] With less than 1 worker this agent does no work", opts.Name))
 	}
-	sem := make(chan struct{}, workers)
+	if opts.Workers > 1 {
+		logger.Warning(fmt.Sprintf("[SERVICE: AsyncAgent][Kafka][%s] Workers > 1 ignored; Kafka async processes messages sequentially to preserve offset commit order", opts.Name))
+	}
 	shouldProcess := newProcessor(ctx, opts, logger, next)
 	var shouldExit atomic.Value
 	shouldExit.Store(false)
@@ -84,27 +85,17 @@ recvLoop:
 			break recvLoop
 		}
 
-		select {
-		case sem <- struct{}{}:
-		case <-ctx.Done():
-			return ctx.Err()
-		}
+		waitIfRequired()
 
-		go func(msg kafka.Message) {
-			defer func() { <-sem }()
-
-			waitIfRequired()
-
-			ok := shouldProcess(msg)
+		if shouldProcess(msg) {
 			if err := reader.CommitMessages(ctx, msg); err != nil {
 				logger.Error(fmt.Sprintf("[SERVICE: AsyncAgent][Kafka][%s] CommitMessages:", opts.Name), err)
 				shouldExit.Store(true)
-				return
+				break recvLoop
 			}
-			if !ok {
-				logger.Warning(fmt.Sprintf("[SERVICE: AsyncAgent][Kafka][%s] backend pipeline failed; offset committed", opts.Name))
-			}
-		}(msg)
+		} else {
+			logger.Warning(fmt.Sprintf("[SERVICE: AsyncAgent][Kafka][%s] backend pipeline failed; offset not committed", opts.Name))
+		}
 	}
 
 	logger.Warning(fmt.Sprintf("[SERVICE: AsyncAgent][Kafka][%s] Consumer stopped", opts.Name))
