@@ -53,3 +53,8 @@ On publish, the HTTP request body is sent as the message body and the first valu
 ## Kafka advanced and async agents
 
 For mTLS/SASL Kafka connections use `backend/pubsub/publisher/kafka` and `backend/pubsub/subscriber/kafka`. For background consumption without HTTP clients use the `async/kafka` driver in `async_agent` configuration.
+
+## Recent releases
+
+- **v2.0.5** — Kafka async pending-offset retry, config-only startup probe, HTTP subscriber pending commits, format-before-commit/ack
+- See [non-REST bugfix changelog](https://github.com/velonetics/velonetics-ce/blob/main/docs/non-rest-connectivity/BUGFIX-CHANGELOG.md) in velonetics-ce for full cross-module history
