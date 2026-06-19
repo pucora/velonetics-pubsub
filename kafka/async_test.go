@@ -3,7 +3,7 @@ package kafka
 import (
 	"testing"
 
-	"github.com/velonetics/lura/v2/config"
+	"github.com/pucora/lura/v2/config"
 )
 
 func TestParseAsyncDriverConfig(t *testing.T) {

@@ -4,7 +4,7 @@ import (
 	"testing"
 
 	"github.com/segmentio/kafka-go"
-	"github.com/velonetics/lura/v2/config"
+	"github.com/pucora/lura/v2/config"
 )
 
 func TestIsolationLevel(t *testing.T) {

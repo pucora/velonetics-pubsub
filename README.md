@@ -1,6 +1,6 @@
 # velonetics-pubsub
 
-Pub/Sub backend for the Velonetics API gateway. Connects HTTP endpoints to message brokers using [Go Cloud Pub/Sub](https://gocloud.dev/howto/pubsub/).
+Pub/Sub backend for the Pucora API gateway. Connects HTTP endpoints to message brokers using [Go Cloud Pub/Sub](https://gocloud.dev/howto/pubsub/).
 
 ## Supported drivers
 
@@ -57,4 +57,4 @@ For mTLS/SASL Kafka connections use `backend/pubsub/publisher/kafka` and `backen
 ## Recent releases
 
 - **v2.0.5** — Kafka async pending-offset retry, config-only startup probe, HTTP subscriber pending commits, format-before-commit/ack
-- See [non-REST bugfix changelog](https://github.com/velonetics/velonetics-ce/blob/main/docs/non-rest-connectivity/BUGFIX-CHANGELOG.md) in velonetics-ce for full cross-module history
+- See [non-REST bugfix changelog](https://github.com/pucora/velonetics-ce/blob/main/docs/non-rest-connectivity/BUGFIX-CHANGELOG.md) in velonetics-ce for full cross-module history

@@ -6,9 +6,9 @@ import (
 	"fmt"
 	"time"
 
-	kafkapkg "github.com/velonetics/velonetics-pubsub/v2/kafka"
-	"github.com/velonetics/lura/v2/async"
-	"github.com/velonetics/lura/v2/logging"
+	kafkapkg "github.com/pucora/velonetics-pubsub/v2/kafka"
+	"github.com/pucora/lura/v2/async"
+	"github.com/pucora/lura/v2/logging"
 )
 
 const minExecutionTime = 5 * time.Second

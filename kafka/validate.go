@@ -3,7 +3,7 @@ package kafka
 import (
 	"fmt"
 
-	"github.com/velonetics/lura/v2/config"
+	"github.com/pucora/lura/v2/config"
 )
 
 // ValidateConfig checks Kafka advanced pub/sub and async/kafka settings at startup.

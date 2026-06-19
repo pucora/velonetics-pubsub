@@ -6,11 +6,11 @@ import (
 	"time"
 
 	"github.com/segmentio/kafka-go"
-	"github.com/velonetics/lura/v2/config"
+	"github.com/pucora/lura/v2/config"
 )
 
 // AsyncDriverNamespace is the extra_config key for async/kafka agents.
-const AsyncDriverNamespace = "github.com/velonetics/velonetics-pubsub/async"
+const AsyncDriverNamespace = "github.com/pucora/velonetics-pubsub/async"
 
 // AsyncReaderConfig defines the async/kafka driver settings.
 type AsyncReaderConfig struct {

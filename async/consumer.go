@@ -9,10 +9,10 @@ import (
 	"time"
 
 	"github.com/segmentio/kafka-go"
-	kafkapkg "github.com/velonetics/velonetics-pubsub/v2/kafka"
-	ratelimit "github.com/velonetics/velonetics-ratelimit/v3"
-	"github.com/velonetics/lura/v2/logging"
-	"github.com/velonetics/lura/v2/proxy"
+	kafkapkg "github.com/pucora/velonetics-pubsub/v2/kafka"
+	ratelimit "github.com/pucora/velonetics-ratelimit/v3"
+	"github.com/pucora/lura/v2/logging"
+	"github.com/pucora/lura/v2/proxy"
 )
 
 const pipelineRetryDelay = time.Second

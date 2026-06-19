@@ -17,18 +17,18 @@ import (
 	_ "gocloud.dev/pubsub/natspubsub"
 	_ "gocloud.dev/pubsub/rabbitpubsub"
 
-	"github.com/velonetics/lura/v2/config"
-	"github.com/velonetics/lura/v2/logging"
-	"github.com/velonetics/lura/v2/proxy"
+	"github.com/pucora/lura/v2/config"
+	"github.com/pucora/lura/v2/logging"
+	"github.com/pucora/lura/v2/proxy"
 
-	kafkapubsub "github.com/velonetics/velonetics-pubsub/v2/kafka"
+	kafkapubsub "github.com/pucora/velonetics-pubsub/v2/kafka"
 )
 
 var errNoBackendHostDefined = fmt.Errorf("no host backend defined")
 
 const (
-	publisherNamespace  = "github.com/velonetics/velonetics-pubsub/publisher"
-	subscriberNamespace = "github.com/velonetics/velonetics-pubsub/subscriber"
+	publisherNamespace  = "github.com/pucora/velonetics-pubsub/publisher"
+	subscriberNamespace = "github.com/pucora/velonetics-pubsub/subscriber"
 )
 
 func NewBackendFactory(ctx context.Context, logger logging.Logger, bf proxy.BackendFactory) *BackendFactory {

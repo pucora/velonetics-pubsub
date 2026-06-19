@@ -4,12 +4,12 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/velonetics/lura/v2/config"
+	"github.com/pucora/lura/v2/config"
 )
 
 const (
-	PublisherNamespace  = "github.com/velonetics/velonetics-pubsub/kafka/publisher"
-	SubscriberNamespace = "github.com/velonetics/velonetics-pubsub/kafka/subscriber"
+	PublisherNamespace  = "github.com/pucora/velonetics-pubsub/kafka/publisher"
+	SubscriberNamespace = "github.com/pucora/velonetics-pubsub/kafka/subscriber"
 )
 
 type publisherCfg struct {
