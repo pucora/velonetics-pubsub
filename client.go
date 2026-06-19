@@ -21,14 +21,14 @@ import (
 	"github.com/pucora/lura/v2/logging"
 	"github.com/pucora/lura/v2/proxy"
 
-	kafkapubsub "github.com/pucora/velonetics-pubsub/v2/kafka"
+	kafkapubsub "github.com/pucora/pucora-pubsub/v2/kafka"
 )
 
 var errNoBackendHostDefined = fmt.Errorf("no host backend defined")
 
 const (
-	publisherNamespace  = "github.com/pucora/velonetics-pubsub/publisher"
-	subscriberNamespace = "github.com/pucora/velonetics-pubsub/subscriber"
+	publisherNamespace  = "github.com/pucora/pucora-pubsub/publisher"
+	subscriberNamespace = "github.com/pucora/pucora-pubsub/subscriber"
 )
 
 func NewBackendFactory(ctx context.Context, logger logging.Logger, bf proxy.BackendFactory) *BackendFactory {

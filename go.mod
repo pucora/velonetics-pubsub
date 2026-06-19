@@ -1,11 +1,11 @@
-module github.com/pucora/velonetics-pubsub/v2
+module github.com/pucora/pucora-pubsub/v2
 
 go 1.25.0
 
 require (
 	github.com/segmentio/kafka-go v0.4.51
 	github.com/pucora/lura/v2 v2.0.0
-	github.com/pucora/velonetics-ratelimit/v3 v3.0.0
+	github.com/pucora/pucora-ratelimit/v3 v3.0.0
 	gocloud.dev v0.45.0
 	gocloud.dev/pubsub/kafkapubsub v0.45.0
 	gocloud.dev/pubsub/natspubsub v0.45.0

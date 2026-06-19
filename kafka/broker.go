@@ -76,7 +76,7 @@ func openBrokerProtocolConn(
 
 	clientID := dialer.ClientID
 	if clientID == "" {
-		clientID = "velonetics-pubsub"
+		clientID = "pucora-pubsub"
 	}
 
 	pc := protocol.NewConn(netConn, clientID)

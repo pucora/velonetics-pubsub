@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"time"
 
-	kafkapkg "github.com/pucora/velonetics-pubsub/v2/kafka"
+	kafkapkg "github.com/pucora/pucora-pubsub/v2/kafka"
 	"github.com/pucora/lura/v2/async"
 	"github.com/pucora/lura/v2/logging"
 )

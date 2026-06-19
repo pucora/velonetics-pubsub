@@ -11,7 +11,7 @@ import (
 
 	"github.com/segmentio/kafka-go"
 	"github.com/segmentio/kafka-go/sasl"
-	"github.com/pucora/velonetics-pubsub/v2/kafka/sasl/oauthbearer"
+	"github.com/pucora/pucora-pubsub/v2/kafka/sasl/oauthbearer"
 )
 
 func newDialer(cluster clusterCfg) (*kafka.Dialer, error) {

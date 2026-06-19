@@ -10,7 +10,7 @@ import (
 )
 
 // AsyncDriverNamespace is the extra_config key for async/kafka agents.
-const AsyncDriverNamespace = "github.com/pucora/velonetics-pubsub/async"
+const AsyncDriverNamespace = "github.com/pucora/pucora-pubsub/async"
 
 // AsyncReaderConfig defines the async/kafka driver settings.
 type AsyncReaderConfig struct {

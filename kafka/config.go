@@ -8,8 +8,8 @@ import (
 )
 
 const (
-	PublisherNamespace  = "github.com/pucora/velonetics-pubsub/kafka/publisher"
-	SubscriberNamespace = "github.com/pucora/velonetics-pubsub/kafka/subscriber"
+	PublisherNamespace  = "github.com/pucora/pucora-pubsub/kafka/publisher"
+	SubscriberNamespace = "github.com/pucora/pucora-pubsub/kafka/subscriber"
 )
 
 type publisherCfg struct {

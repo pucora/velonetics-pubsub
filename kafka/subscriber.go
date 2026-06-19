@@ -63,7 +63,7 @@ func initSubscriber(
 
 	groupID := cfg.Reader.Group.resolvedID()
 	if groupID == "" {
-		groupID = "velonetics-pubsub"
+		groupID = "pucora-pubsub"
 	}
 
 	readerCfg := kafka.ReaderConfig{

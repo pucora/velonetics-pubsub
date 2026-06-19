@@ -9,8 +9,8 @@ import (
 	"time"
 
 	"github.com/segmentio/kafka-go"
-	kafkapkg "github.com/pucora/velonetics-pubsub/v2/kafka"
-	ratelimit "github.com/pucora/velonetics-ratelimit/v3"
+	kafkapkg "github.com/pucora/pucora-pubsub/v2/kafka"
+	ratelimit "github.com/pucora/pucora-ratelimit/v3"
 	"github.com/pucora/lura/v2/logging"
 	"github.com/pucora/lura/v2/proxy"
 )
@@ -27,7 +27,7 @@ type consumerOptions struct {
 }
 
 func runConsumer(ctx context.Context, opts consumerOptions, logger logging.Logger, ping chan<- string, pingTicker *time.Ticker, next proxy.Proxy) error {
-	reader, err := kafkapkg.NewAsyncReader(opts.Driver, opts.Topic, "velonetics-async-"+opts.Name)
+	reader, err := kafkapkg.NewAsyncReader(opts.Driver, opts.Topic, "pucora-async-"+opts.Name)
 	if err != nil {
 		return err
 	}
